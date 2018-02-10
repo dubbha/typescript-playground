@@ -1,24 +1,22 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    devServer: {
-        //publicPath: path.join(__dirname, 'dist')
-    },
     entry: './src/index.ts',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js',
         publicPath: '/'
     },
-
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
-
+    devServer: {
+        contentBase: './dist'
+    },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
-
     module: {
         loaders: [
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -28,4 +26,16 @@ module.exports = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
         ],
     },
+
+    // plugins
+    plugins: [
+        // delete dist folder
+        new CleanWebpackPlugin(['dist']),
+
+        // create dist/index.html
+        new HtmlWebpackPlugin({
+            title: 'TypeScript In-Depth',
+            template: './src/index.html'
+        })
+    ],
 };
