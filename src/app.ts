@@ -1,3 +1,5 @@
+import { UniversityLibrarian } from "./classes";
+
 showHello('app', 'TypeScript');
 function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
@@ -427,65 +429,74 @@ function showHello(divName: string, name: string) {
 
 
 
-// # Task 15. Export and Import
-// # Task 16. Default Export
+// // # Task 15. Export and Import
+// // # Task 16. Default Export
 
-import { Category } from './enums';
-import { UniversityLibrarian, ReferenceItem } from './classes';
-import { Book, DamageLogger, Author, Librarian } from './interfaces';
-import RefBook from './encyclopedia';
+// import { Category } from './enums';
+// import { UniversityLibrarian, ReferenceItem } from './classes';
+// import { Book, DamageLogger, Author, Librarian } from './interfaces';
+// import RefBook from './encyclopedia';
 
-const refBook: RefBook = new RefBook('Wiki', 1998, 3);
-// refBook.printItem();
-// refBook.printCitation();
+// const refBook: RefBook = new RefBook('Wiki', 1998, 3);
+// // refBook.printItem();
+// // refBook.printCitation();
 
 
-// ### Generics
-// # Task 17. Generic Functions
-import { purge } from './lib/utility-functions';
+// // ### Generics
+// // # Task 17. Generic Functions
+// import { purge } from './lib/utility-functions';
 
-const inventory: Array<Book> = [
-    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
-    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
-    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
-    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
-];
+// const inventory: Array<Book> = [
+//     { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+//     { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+//     { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+//     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+// ];
 
-const purgedBooks = purge<Book>(inventory);
-// console.log(purgedBooks);
+// const purgedBooks = purge<Book>(inventory);
+// // console.log(purgedBooks);
 
-const purgedNumbers: Array<number> = purge([1, 2, 3, 4, 5]);
-// console.log(purgedNumbers);
+// const purgedNumbers: Array<number> = purge([1, 2, 3, 4, 5]);
+// // console.log(purgedNumbers);
 
-// # Task 18. Generic Interfaces and Classes
-import { Magazine } from './interfaces';
-import Shelf from './shelf';
+// // # Task 18. Generic Interfaces and Classes
+// import { Magazine } from './interfaces';
+// import Shelf from './shelf';
 
-const bookShelf: Shelf<Book> = new Shelf<Book>();
-inventory.forEach(book => bookShelf.add(book));
-const firstBook = bookShelf.getFirst();
-// console.log(firstBook.title);
+// const bookShelf: Shelf<Book> = new Shelf<Book>();
+// inventory.forEach(book => bookShelf.add(book));
+// const firstBook = bookShelf.getFirst();
+// // console.log(firstBook.title);
 
-const magazines: Array<Magazine> = [
-    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
-    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
-    { title: 'Five Points', publisher: 'GSU' }
-];
+// const magazines: Array<Magazine> = [
+//     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//     { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//     { title: 'Five Points', publisher: 'GSU' }
+// ];
 
-const magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
-magazines.forEach(magazine => magazineShelf.add(magazine));
-const firstMagazine = magazineShelf.getFirst();
-// console.log(firstMagazine.title);
+// const magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
+// magazines.forEach(magazine => magazineShelf.add(magazine));
+// const firstMagazine = magazineShelf.getFirst();
+// // console.log(firstMagazine.title);
 
-// # Task 19. Generic Constraints
-// magazineShelf.printTitles();
-console.log(magazineShelf.find('Five Points'));
+// // # Task 19. Generic Constraints
+// // magazineShelf.printTitles();
+// console.log(magazineShelf.find('Five Points'));
 
 
 // ### Decorators
 // # Task 20.1. Class Decorators
 // # Task 20.2. Class Decorators that replace constructor functions
+const favoriteLibrarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Anna';
+favoriteLibrarian.assistCustomer('Boris');
+
 // # Task 21. Method Decorator
+favoriteLibrarian.assistFaculty();
+favoriteLibrarian.assistFaculty = null;
+
+favoriteLibrarian.teachCommunity();
+favoriteLibrarian.teachCommunity = null;   // will fail, not writable
 
 // ### Asynchronous Patterns
 // ### Task 22. Callback Functions
