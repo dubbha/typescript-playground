@@ -436,14 +436,50 @@ import { Book, DamageLogger, Author, Librarian } from './interfaces';
 import RefBook from './encyclopedia';
 
 const refBook: RefBook = new RefBook('Wiki', 1998, 3);
-refBook.printItem();
-refBook.printCitation();
+// refBook.printItem();
+// refBook.printCitation();
 
 
 // ### Generics
 // # Task 17. Generic Functions
+import { purge } from './lib/utility-functions';
+
+const inventory: Array<Book> = [
+    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+];
+
+const purgedBooks = purge<Book>(inventory);
+// console.log(purgedBooks);
+
+const purgedNumbers: Array<number> = purge([1, 2, 3, 4, 5]);
+// console.log(purgedNumbers);
+
 // # Task 18. Generic Interfaces and Classes
+import { Magazine } from './interfaces';
+import Shelf from './shelf';
+
+const bookShelf: Shelf<Book> = new Shelf<Book>();
+inventory.forEach(book => bookShelf.add(book));
+const firstBook = bookShelf.getFirst();
+// console.log(firstBook.title);
+
+const magazines: Array<Magazine> = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' }
+];
+
+const magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
+magazines.forEach(magazine => magazineShelf.add(magazine));
+const firstMagazine = magazineShelf.getFirst();
+// console.log(firstMagazine.title);
+
 // # Task 19. Generic Constraints
+// magazineShelf.printTitles();
+console.log(magazineShelf.find('Five Points'));
 
 
 // ### Decorators
