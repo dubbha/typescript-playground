@@ -214,56 +214,56 @@ enum Category { JavaScript, CSS, HTML, TypeScript, Angular2 }
 
 
 
-// # Task 08. Defining an Interface for Function Types
-interface DamageLogger {
-    (reason: string): void;
-}
+// // # Task 08. Defining an Interface for Function Types
+// interface DamageLogger {
+//     (reason: string): void;
+// }
+//
+// interface Book {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+//     pages?: number;
+//     markDamaged?: DamageLogger;
+// }
+//
+// const myBook: Book = {
+//     id: 5,
+//     title: 'Colors, Backgrounds, and Gradients',
+//     author: 'Eric A. Meyer',
+//     available: true,
+//     category: Category.CSS,
+//     pages: 200,
+//     markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
+// };
+// myBook.markDamaged('missing back cover');
+//
+// const logDamage: DamageLogger = (reason: string) => console.log(reason);
+// logDamage('damage logged');
 
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-    pages?: number;
-    markDamaged?: DamageLogger;
-}
 
-const myBook: Book = {
-    id: 5,
-    title: 'Colors, Backgrounds, and Gradients',
-    author: 'Eric A. Meyer',
-    available: true,
-    category: Category.CSS,
-    pages: 200,
-    markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
-};
-myBook.markDamaged('missing back cover');
-
-const logDamage: DamageLogger = (reason: string) => console.log(reason);
-logDamage('damage logged');
-
-
-// # Task 09. Extending Interface
-interface Person {
-    name: string;
-    email: string;
-}
-
-interface Author extends Person {
-    numBooksPublished: number;
-};
-
-interface Librarian extends Person {
-    department: string;
-    assistCustomer: (custName: string) => void;
-}
-
-const favoriteAuthor: Author = {
-    name: 'Ann',
-    email: 'ann@site.com',
-    numBooksPublished: 3,
-}
+// // # Task 09. Extending Interface
+// interface Person {
+//     name: string;
+//     email: string;
+// }
+//
+// interface Author extends Person {
+//     numBooksPublished: number;
+// }
+//
+// interface Librarian extends Person {
+//     department: string;
+//     assistCustomer: (custName: string) => void;
+// }
+//
+// const favoriteAuthor: Author = {
+//     name: 'Ann',
+//     email: 'ann@site.com',
+//     numBooksPublished: 3,
+// };
 
 // const favoriteLibrarian: Librarian = {
 //     name: 'Boris',
@@ -274,17 +274,180 @@ const favoriteAuthor: Author = {
 
 
 // # Task 10. Interfaces for Class Types
-class UniversityLibrarian implements Librarian {
-    name: 'Uri';
-    email: 'uri@gmail.com';
-    department: 'physics';
-    
-    assistCustomer(custName) {
-        console.log(`${this.name} is assisting ${custName}`);
-    }
-}
+// class UniversityLibrarian implements Librarian {
+//     name: 'Uri';
+//     email: 'uri@gmail.com';
+//     department: 'physics';
+//
+//     assistCustomer(custName: string): void {
+//         console.log(`${this.name} is assisting ${custName}`);
+//     }
+// }
+//
+// const favoriteLibrarian: Librarian = new UniversityLibrarian();
+// favoriteLibrarian.name = 'Ann';
+// favoriteLibrarian.assistCustomer('Boris');
 
-const favoriteLibrarian: Librarian = new UniversityLibrarian();
-favoriteLibrarian.name = 'Ann';
-favoriteLibrarian.assistCustomer('Boris');
+
+// // ### Classes
+// // # Task 11. Creating and Using Classes
+//
+// class ReferenceItem {
+//     // title: string;
+//     // year: number;
+//     //
+//     // constructor(newTitle: string, newYear: number) {
+//     //     console.log('Creating new ReferenceItem');
+//     //     this.title = newTitle;
+//     //     this.year = newYear;
+//     // }
+//
+//     constructor(
+//         public title: string,
+//         private year: number,
+//     ) {}
+//
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+//     }
+// }
+//
+// const ref: ReferenceItem = new ReferenceItem('Facts & Figures', 2018);
+// ref.printItem();
+
+
+// class ReferenceItem {
+//     static department: string = 'Classical';
+//     private _publisher: string;
+//
+//     constructor(
+//         public title: string,
+//         private year: number,
+//     ) {}
+//
+//     get publisher(): string {
+//         return this._publisher.toUpperCase();
+//     }
+//
+//     set publisher(newPublisher: string) {
+//         this._publisher = newPublisher;
+//     }
+//
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);  // access instance prop
+//         console.log(`Department: ${ReferenceItem.department}`);      // access static prop
+//     }
+// }
+//
+// const ref: ReferenceItem = new ReferenceItem('Facts & Figures', 2018);
+// ref.printItem();
+// ref.publisher = 'Amazon';
+// console.log(ref.publisher);
+
+
+// // # Task 12. Extending Classes
+// class Encyclopedia extends ReferenceItem {
+//     public edition: number;
+//
+//     constructor(
+//         newTitle: string,
+//         newYear: number,
+//         edition: number
+//     ) {
+//         super(newTitle, newYear);
+//         this.edition = edition;
+//     }
+//
+//     printItem() {
+//         super.printItem();
+//         console.log(`Edition: edition ${this.edition}`);
+//     }
+// }
+//
+// const refBook: Encyclopedia = new Encyclopedia('Wiki', 1998, 3);
+// refBook.printItem();
+
+
+
+// // # Task 13. Creating Abstract Classes
+//
+// abstract class ReferenceItem {
+//     static department: string = 'Classical';
+//     private _publisher: string;
+//
+//     constructor(
+//         public title: string,
+//         protected year: number,
+//     ) {}
+//
+//     abstract printCitation(): void;
+//
+//     get publisher(): string {
+//         return this._publisher.toUpperCase();
+//     }
+//
+//     set publisher(newPublisher: string) {
+//         this._publisher = newPublisher;
+//     }
+//
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);  // access instance prop
+//         console.log(`Department: ${ReferenceItem.department}`);      // access static prop
+//     }
+// }
+//
+// class Encyclopedia extends ReferenceItem {
+//     public edition: number;
+//
+//     constructor(
+//         newTitle: string,
+//         newYear: number,
+//         edition: number
+//     ) {
+//         super(newTitle, newYear);
+//         this.edition = edition;
+//     }
+//
+//     printCitation(): void {
+//         console.log(`${this.title} - ${this.year}`);
+//     }
+//
+//     printItem() {
+//         super.printItem();
+//         console.log(`Edition: edition ${this.edition}`);
+//     }
+// }
+//
+// const refBook: Encyclopedia = new Encyclopedia('Wiki', 1998, 3);
+// refBook.printItem();
+// refBook.printCitation();
+
+
+
+// ### Modules and Namespaces
+// # Task 14. Using Namespaces
+
+
+
+// # Task 15. Export and Import
+// # Task 16. Default Export
+
+
+
+
+// ### Generics
+// # Task 17. Generic Functions
+// # Task 18. Generic Interfaces and Classes
+// # Task 19. Generic Constraints
+
+
+// ### Decorators
+// # Task 20.1. Class Decorators
+// # Task 20.2. Class Decorators that replace constructor functions
+// # Task 21. Method Decorator
+
+// ### Asynchronous Patterns
+// ### Task 22. Callback Functions
+// ### Task 23. Promises
+// ### Task 24. Async/await
 
