@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/app.ts',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js',
