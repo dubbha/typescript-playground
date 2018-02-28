@@ -6,14 +6,10 @@ function showHello(divName: string, name: string) {
 
 
 // ### Interfaces
-// # Task 09. Extending Interface
+// # Task 10. Interfaces for Class Types
 interface Person {
     name: string;
     email: string;
-}
-
-interface Author extends Person {
-    numBooksPublished: number;
 }
 
 interface Librarian extends Person {
@@ -21,14 +17,16 @@ interface Librarian extends Person {
     assistCustomer: (custName: string) => void;
 }
 
-const favoriteAuthor: Author = {
-    name: 'Ann',
-    email: 'ann@site.com',
-    numBooksPublished: 3,
-};
-const favoriteLibrarian: Librarian = {
-    name: 'Boris',
-    email: 'boris@gmail.com',
-    department: 'classical',
-    assistCustomer: (custName: string) => console.log(`Assist ${custName}`),
+class UniversityLibrarian implements Librarian {
+    name: 'Uri';
+    email: 'uri@gmail.com';
+    department: 'physics';
+
+    assistCustomer(custName: string): void {
+        console.log(`${this.name} is assisting ${custName}`);
+    }
 }
+
+const favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Ann';
+favoriteLibrarian.assistCustomer('Boris');
