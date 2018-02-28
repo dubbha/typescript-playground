@@ -6,33 +6,29 @@ function showHello(divName: string, name: string) {
 
 
 // ### Functions
-// # Task 08. Defining an Interface for Function Types
-enum Category { JavaScript, CSS, HTML, TypeScript, Angular2, Software }
-
-interface DamageLogger {
-    (reason: string): void;
+// # Task 09. Extending Interface
+interface Person {
+    name: string;
+    email: string;
 }
 
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-    pages?: number;
-    markDamaged?: DamageLogger;
+interface Author extends Person {
+    numBooksPublished: number;
 }
 
-const myBook: Book = {
-    id: 5,
-    title: 'Colors, Backgrounds, and Gradients',
-    author: 'Eric A. Meyer',
-    available: true,
-    category: Category.CSS,
-    pages: 200,
-    markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
+interface Librarian extends Person {
+    department: string;
+    assistCustomer: (custName: string) => void;
+}
+
+const favoriteAuthor: Author = {
+    name: 'Ann',
+    email: 'ann@site.com',
+    numBooksPublished: 3,
 };
-myBook.markDamaged('missing back cover');
-
-const logDamage: DamageLogger = (reason: string) => console.log(reason);
-logDamage('damage logged');
+const favoriteLibrarian: Librarian = {
+    name: 'Boris',
+    email: 'boris@gmail.com',
+    department: 'classical',
+    assistCustomer: (custName: string) => console.log(`Assist ${custName}`),
+}
