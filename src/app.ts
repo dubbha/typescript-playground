@@ -113,7 +113,6 @@ function showHello(divName: string, name: string) {
 //             titles.push(cur.title);
 //         }
 //     }
-
 //     return titles;
 // }
 // console.log(getBookTitlesByCategory());
@@ -487,19 +486,62 @@ function showHello(divName: string, name: string) {
 // ### Decorators
 // # Task 20.1. Class Decorators
 // # Task 20.2. Class Decorators that replace constructor functions
-const favoriteLibrarian = new UniversityLibrarian();
-favoriteLibrarian.name = 'Anna';
-favoriteLibrarian.assistCustomer('Boris');
+// const favoriteLibrarian = new UniversityLibrarian();
+// favoriteLibrarian.name = 'Anna';
+// favoriteLibrarian.assistCustomer('Boris');
 
-// # Task 21. Method Decorator
-favoriteLibrarian.assistFaculty();
-favoriteLibrarian.assistFaculty = null;
+// // # Task 21. Method Decorator
+// favoriteLibrarian.assistFaculty();
+// favoriteLibrarian.assistFaculty = null;
 
-favoriteLibrarian.teachCommunity();
-favoriteLibrarian.teachCommunity = null;   // will fail, not writable
+// favoriteLibrarian.teachCommunity();
+// favoriteLibrarian.teachCommunity = null;   // will fail, not writable
 
 // ### Asynchronous Patterns
 // ### Task 22. Callback Functions
+import { getBooksByCategory, logCategorySearch } from './lib/utility-functions';
+import { Category } from "./enums";
+
+console.log('begin');
+getBooksByCategory(Category.JavaScript, logCategorySearch);
+getBooksByCategory(Category.Software, logCategorySearch);
+console.log('end');
+
+
 // ### Task 23. Promises
+import { getBooksByCategoryPromise } from './lib/utility-functions';
+console.log('begin');
+getBooksByCategoryPromise(Category.JavaScript)
+    .then(titles => console.log(titles))
+    .catch(err => console.error(err));
+getBooksByCategoryPromise(Category.Software)
+    .then(titles => console.log(titles))
+    .catch(err => console.error(err));
+console.log('end');
+
+// error in then
+getBooksByCategoryPromise(Category.JavaScript)
+    .then(titles => { throw('error in then') })
+    .catch(err => console.error(err));
+
+// number of books
+getBooksByCategoryPromise(Category.JavaScript)
+    .then(titles => titles.length)
+    .then(numOfBooks => console.log(numOfBooks))
+    .catch(err => console.error(err));
+
+
+
+
 // ### Task 24. Async/await
+// No need to use babel-polyfill with new TypeScript
+// import 'babel-polyfill';
+import { logSearchResults } from './lib/utility-functions';
+
+console.log('Beginning search...');
+logSearchResults(Category.JavaScript)
+    .catch(reason => console.log(reason));
+logSearchResults(Category.Software)
+    .catch(reason => console.log(reason));
+console.log('Search submitted...');
 
