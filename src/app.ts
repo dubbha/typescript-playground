@@ -6,15 +6,17 @@ function showHello(divName: string, name: string) {
 
 
 // ### Classes
-// # Task 12. Extending Classes
-class ReferenceItem {
+// # Task 13. Creating Abstract Classes
+abstract class ReferenceItem {
     static department: string = 'Classical';
     private _publisher: string;
 
     constructor(
         public title: string,
-        private year: number,
+        protected year: number,
     ) {}
+
+    abstract printCitation(): void;
 
     get publisher(): string {
         return this._publisher.toUpperCase();
@@ -42,6 +44,10 @@ class Encyclopedia extends ReferenceItem {
         this.edition = edition;
     }
 
+    printCitation(): void {
+        console.log(`${this.title} - ${this.year}`);
+    }
+
     printItem() {
         super.printItem();
         console.log(`Edition: edition ${this.edition}`);
@@ -50,3 +56,4 @@ class Encyclopedia extends ReferenceItem {
 
 const refBook: Encyclopedia = new Encyclopedia('Wiki', 1998, 3);
 refBook.printItem();
+refBook.printCitation();
