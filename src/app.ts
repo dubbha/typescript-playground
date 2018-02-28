@@ -6,8 +6,12 @@ function showHello(divName: string, name: string) {
 
 
 // ### Functions
-// # Task 07. Defining an Interface
+// # Task 08. Defining an Interface for Function Types
 enum Category { JavaScript, CSS, HTML, TypeScript, Angular2, Software }
+
+interface DamageLogger {
+    (reason: string): void;
+}
 
 interface Book {
     id: number;
@@ -16,34 +20,19 @@ interface Book {
     available: boolean;
     category: Category;
     pages?: number;
-    markDamaged?: (reason: string) => void;
+    markDamaged?: DamageLogger;
 }
-function getAllBooks(): Book[] {
-    const books: Book[] = [
-        { id: 1, title: 'Refactoring JavaScript', author: 'Evan Burchard', available: true, category: Category.JavaScript },
-        { id: 2, title: 'JavaScript Testing', author: 'Liang Yuxian Eugene', available: false, category: Category.JavaScript  },
-        { id: 3, title: 'CSS Secrets', author: 'Lea Verou', available: true, category: Category.CSS },
-        { id: 4, title: 'Mastering JavaScript Object-Oriented Programming', author: 'Andrea Chiarelli', available: true, category: Category.JavaScript  }
-    ];
-    return books;
-}
-function getBookById(id): Book | undefined {
-    const books = getAllBooks();
-    return books.find(book => book.id === id);
-}
-function printBook(book: Book): void {
-    console.log(`${book.title} by ${book.author}`);
-}
+
 const myBook: Book = {
     id: 5,
     title: 'Colors, Backgrounds, and Gradients',
     author: 'Eric A. Meyer',
     available: true,
     category: Category.CSS,
-    // year: 2015,
-    // copies: 3
     pages: 200,
     markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
 };
-printBook(myBook);
 myBook.markDamaged('missing back cover');
+
+const logDamage: DamageLogger = (reason: string) => console.log(reason);
+logDamage('damage logged');
