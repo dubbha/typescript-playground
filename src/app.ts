@@ -6,31 +6,7 @@ function showHello(divName: string, name: string) {
 
 
 // ### Classes
-// # Task 11. Creating and Using Classes
-
-// class ReferenceItem {
-//     // title: string;
-//     // year: number;
-//     //
-//     // constructor(newTitle: string, newYear: number) {
-//     //     console.log('Creating new ReferenceItem');
-//     //     this.title = newTitle;
-//     //     this.year = newYear;
-//     // }
-//
-//     constructor(
-//         public title: string,
-//         private year: number,
-//     ) {}
-//
-//     printItem(): void {
-//         console.log(`${this.title} was published in ${this.year}`);
-//     }
-// }
-//
-// const ref: ReferenceItem = new ReferenceItem('Facts & Figures', 2018);
-// ref.printItem();
-
+// # Task 12. Extending Classes
 class ReferenceItem {
     static department: string = 'Classical';
     private _publisher: string;
@@ -54,7 +30,23 @@ class ReferenceItem {
     }
 }
 
-const ref: ReferenceItem = new ReferenceItem('Facts & Figures', 2018);
-ref.printItem();
-ref.publisher = 'Amazon';
-console.log(ref.publisher);
+class Encyclopedia extends ReferenceItem {
+    public edition: number;
+
+    constructor(
+        newTitle: string,
+        newYear: number,
+        edition: number
+    ) {
+        super(newTitle, newYear);
+        this.edition = edition;
+    }
+
+    printItem() {
+        super.printItem();
+        console.log(`Edition: edition ${this.edition}`);
+    }
+}
+
+const refBook: Encyclopedia = new Encyclopedia('Wiki', 1998, 3);
+refBook.printItem();
