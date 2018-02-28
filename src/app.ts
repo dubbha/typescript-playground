@@ -5,28 +5,56 @@ function showHello(divName: string, name: string) {
 }
 
 
-// ### Interfaces
-// # Task 10. Interfaces for Class Types
-interface Person {
-    name: string;
-    email: string;
-}
+// ### Classes
+// # Task 11. Creating and Using Classes
 
-interface Librarian extends Person {
-    department: string;
-    assistCustomer: (custName: string) => void;
-}
+// class ReferenceItem {
+//     // title: string;
+//     // year: number;
+//     //
+//     // constructor(newTitle: string, newYear: number) {
+//     //     console.log('Creating new ReferenceItem');
+//     //     this.title = newTitle;
+//     //     this.year = newYear;
+//     // }
+//
+//     constructor(
+//         public title: string,
+//         private year: number,
+//     ) {}
+//
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+//     }
+// }
+//
+// const ref: ReferenceItem = new ReferenceItem('Facts & Figures', 2018);
+// ref.printItem();
 
-class UniversityLibrarian implements Librarian {
-    name: 'Uri';
-    email: 'uri@gmail.com';
-    department: 'physics';
+class ReferenceItem {
+    static department: string = 'Classical';
+    private _publisher: string;
 
-    assistCustomer(custName: string): void {
-        console.log(`${this.name} is assisting ${custName}`);
+    constructor(
+        public title: string,
+        private year: number,
+    ) {}
+
+    get publisher(): string {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher: string) {
+        this._publisher = newPublisher;
+    }
+
+    printItem(): void {
+        console.log(`${this.title} was published in ${this.year}`);  // access instance prop
+        console.log(`Department: ${ReferenceItem.department}`);      // access static prop
     }
 }
 
-const favoriteLibrarian: Librarian = new UniversityLibrarian();
-favoriteLibrarian.name = 'Ann';
-favoriteLibrarian.assistCustomer('Boris');
+const ref: ReferenceItem = new ReferenceItem('Facts & Figures', 2018);
+ref.printItem();
+ref.publisher = 'Amazon';
+console.log(ref.publisher);
