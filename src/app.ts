@@ -6,10 +6,15 @@ function showHello(divName: string, name: string) {
 
 
 // ### Modules and Namespaces
-// # Task 15. Export and Import
+// # Task 16. Default Export
 import { Category } from './enums';
 import { UniversityLibrarian, ReferenceItem } from './classes';
 import { Book, DamageLogger, Author, Librarian } from './interfaces';
+import RefBook from './encyclopedia';
 
 const logDamage: DamageLogger = (reason: string) => console.log(reason);
 logDamage('damage logged');
+
+const refBook: RefBook = new RefBook('Wiki', 1998, 3);
+refBook.printItem();
+refBook.printCitation();
