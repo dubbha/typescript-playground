@@ -5,7 +5,7 @@ function showHello(divName: string, name: string) {
 }
 
 
-// ### Functions
+// ### Interfaces
 // # Task 09. Extending Interface
 interface Person {
     name: string;
