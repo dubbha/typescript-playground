@@ -28,13 +28,4 @@ interface Librarian extends Person {
     assistCustomer: (custName: string) => void;
 }
 
-interface Magazine {
-    title: string,
-    publisher: string,
-}
-
-interface ShelfItem {
-    title: string;
-}
-
-export { Book, DamageLogger, Author, Librarian, Magazine, ShelfItem };
+export { Book, DamageLogger, Author, Librarian };
