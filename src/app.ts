@@ -6,7 +6,7 @@ function showHello(divName: string, name: string) {
 
 
 // ### Functions
-// # Task 05. Optional, Default and Rest Parameters
+// # Task 06. Function Overloading
 enum Category { JavaScript, CSS, HTML, TypeScript, Angular2, Software }
 
 function getAllBooks(): any[] {
@@ -20,63 +20,14 @@ function getAllBooks(): any[] {
     return books;
 }
 
-getAllBooks().forEach(book => console.log(`[${book.id}]`, book.title));
-
-function getBookById(id): any {
-    const books = getAllBooks();
-    return books.find(book => book.id === id);
-}
-
-function createCustomer(name: string, age?: number, city?: string): void {
-    let output = `${name}`;
-    if (age) output += ` ${age}`;
-    if (city) output += ` ${city}`;
-    console.log(output);
-}
-createCustomer('Ann');
-createCustomer('Ann', 25);
-createCustomer('Ann', 25, 'New York');
-
-function getBookTitlesByCategory(category: Category = Category.JavaScript): string[] {
-    const allBooks = getAllBooks();
-    const titles: string[] = [];
-
-    for (const cur of allBooks) {
-        if (cur.category === category) {
-            titles.push(cur.title);
-        }
-    }
-    return titles;
-}
-console.log(getBookTitlesByCategory());
-
-function logFirstAvailable(books: any[] = getAllBooks()): void {
-    const numberOfBooks: number = books.length;
-
-    let firstAvailable: string;
-    let numOfBooks: number;
-
-    console.log(`Number of books: ${books.length}`);
-    for (const cur of books) {
-        if (cur.available) {
-            return console.log(`First Available: ${cur.title}`);
-        }
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(property: string | boolean): string[] {
+    if (typeof property === 'string') {
+        return getAllBooks().filter(book => book.author === property).map(book => book.title);
+    } else if (typeof property === 'boolean') {
+        return getAllBooks().filter(book => book.available === property).map(book => book.title);
     }
 }
-logFirstAvailable();
-
-function checkoutBooks(customer: string, ...bookIDs: number[]): string[] {
-    const availableBooks: string[] = [];
-
-    for (const id of bookIDs) {
-        const book = getBookById(id);
-        if (book.available) {
-            availableBooks.push(book.title);
-        }
-    };
-
-    console.log('Customer:', customer);
-    return availableBooks;
-}
-const myBooks = checkoutBooks('Ann', 1, 2, 4);
-myBooks.forEach(title => console.log(title));
+console.log(getTitles('Lea Verou'));    // books by Lea Verou
+console.log(getTitles(false));          // unavailable books
