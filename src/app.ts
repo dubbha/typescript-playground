@@ -5,7 +5,7 @@ function showHello(divName: string, name: string) {
 }
 
 
-// ### Functions
+// ### Interfaces
 // # Task 08. Defining an Interface for Function Types
 enum Category { JavaScript, CSS, HTML, TypeScript, Angular2, Software }
 
