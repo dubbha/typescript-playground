@@ -6,26 +6,15 @@ function showHello(divName: string, name: string) {
 
 
 // ### Asynchronous Patterns
-// ### Task 23. Promises
-import { getBooksByCategoryPromise } from './lib/utility-functions';
+// ### Task 24. Async/await
+// No need to use babel-polyfill with new TypeScript
+// import 'babel-polyfill';
 import { Category } from './enums';
+import { logSearchResults } from './lib/utility-functions';
 
-console.log('begin');
-getBooksByCategoryPromise(Category.JavaScript)
-    .then(titles => console.log(titles))
-    .catch(err => console.error(err));
-getBooksByCategoryPromise(Category.Software)
-    .then(titles => console.log(titles))
-    .catch(err => console.error(err));
-console.log('end');
-
-// error in then
-getBooksByCategoryPromise(Category.JavaScript)
-    .then(titles => { throw('error in then') })
-    .catch(err => console.error(err));
-
-// number of books
-getBooksByCategoryPromise(Category.JavaScript)
-    .then(titles => titles.length)
-    .then(numOfBooks => console.log(numOfBooks))
-    .catch(err => console.error(err));
+console.log('Beginning search...');
+logSearchResults(Category.JavaScript)
+    .catch(reason => console.log(reason));
+logSearchResults(Category.Software)
+    .catch(reason => console.log(reason));
+console.log('Search submitted...');

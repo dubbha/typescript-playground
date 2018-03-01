@@ -76,3 +76,8 @@ export function getBooksByCategoryPromise(
 
     return p;
 }
+
+export async function logSearchResults(category: Category) {
+    let foundBooks = await getBooksByCategoryPromise(category);
+    console.log(foundBooks);
+}
