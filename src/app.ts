@@ -6,7 +6,7 @@ function showHello(divName: string, name: string) {
 
 
 // ### Generics
-// # Task 18. Generic Interfaces and Classes
+// # Task 18. Generic Constraints
 import { Category } from './enums';
 import { Book } from './interfaces';
 import { Magazine } from './interfaces';
@@ -21,8 +21,8 @@ const inventory: Array<Book> = [
 
 const bookShelf: Shelf<Book> = new Shelf<Book>();
 inventory.forEach(book => bookShelf.add(book));
-const firstBook = bookShelf.getFirst();
-console.log(firstBook.title);
+// const firstBook = bookShelf.getFirst();
+// console.log(firstBook.title);
 
 const magazines: Array<Magazine> = [
     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
@@ -32,5 +32,8 @@ const magazines: Array<Magazine> = [
 
 const magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
 magazines.forEach(magazine => magazineShelf.add(magazine));
-const firstMagazine = magazineShelf.getFirst();
-console.log(firstMagazine.title);
+// const firstMagazine = magazineShelf.getFirst();
+// console.log(firstMagazine.title);
+
+magazineShelf.printTitles();
+console.log(magazineShelf.find('Five Points'));
