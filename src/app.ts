@@ -5,12 +5,12 @@ function showHello(divName: string, name: string) {
 }
 
 
-// ### Modules and Namespaces
-// # Task 17. Generic Functions
+// ### Generics
+// # Task 18. Generic Interfaces and Classes
 import { Category } from './enums';
 import { Book } from './interfaces';
-import RefBook from './encyclopedia';
-import { purge } from './lib/utility-functions';
+import { Magazine } from './interfaces';
+import Shelf from './shelf';
 
 const inventory: Array<Book> = [
     { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
@@ -19,8 +19,18 @@ const inventory: Array<Book> = [
     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
 ];
 
-const purgedBooks = purge<Book>(inventory);
-console.log(purgedBooks);
+const bookShelf: Shelf<Book> = new Shelf<Book>();
+inventory.forEach(book => bookShelf.add(book));
+const firstBook = bookShelf.getFirst();
+console.log(firstBook.title);
 
-const purgedNumbers: Array<number> = purge([1, 2, 3, 4, 5]);
-console.log(purgedNumbers);
+const magazines: Array<Magazine> = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' }
+];
+
+const magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
+magazines.forEach(magazine => magazineShelf.add(magazine));
+const firstMagazine = magazineShelf.getFirst();
+console.log(firstMagazine.title);
