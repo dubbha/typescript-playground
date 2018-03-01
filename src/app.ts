@@ -6,7 +6,7 @@ function showHello(divName: string, name: string) {
 
 
 // ### Generics
-// # Task 18. Generic Constraints
+// # Task 19. Generic Constraints
 import { Category } from './enums';
 import { Book } from './interfaces';
 import { Magazine } from './interfaces';
