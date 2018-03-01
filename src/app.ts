@@ -6,10 +6,15 @@ function showHello(divName: string, name: string) {
 
 
 // ### Decorators
-// # Task 20.1. Class Decorators
-// # Task 20.2. Class Decorators that replace constructor functions
+// # Task 21. Method Decorator
 import { UniversityLibrarian } from "./classes";
 
 const favoriteLibrarian = new UniversityLibrarian();
 favoriteLibrarian.name = 'Anna';
 favoriteLibrarian.assistCustomer('Boris');
+
+favoriteLibrarian.assistFaculty();
+favoriteLibrarian.assistFaculty = null;
+
+favoriteLibrarian.teachCommunity();
+favoriteLibrarian.teachCommunity = null;   // will fail, not writable
