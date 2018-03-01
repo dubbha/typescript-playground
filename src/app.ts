@@ -5,16 +5,12 @@ function showHello(divName: string, name: string) {
 }
 
 
-// ### Decorators
-// # Task 21. Method Decorator
-import { UniversityLibrarian } from "./classes";
+// ### Asynchronous Patterns
+// # Task 22. Callback Functions
+import { getBooksByCategory, logCategorySearch } from './lib/utility-functions';
+import { Category } from "./enums";
 
-const favoriteLibrarian = new UniversityLibrarian();
-favoriteLibrarian.name = 'Anna';
-favoriteLibrarian.assistCustomer('Boris');
-
-favoriteLibrarian.assistFaculty();
-favoriteLibrarian.assistFaculty = null;
-
-favoriteLibrarian.teachCommunity();
-favoriteLibrarian.teachCommunity = null;   // will fail, not writable
+console.log('begin');
+getBooksByCategory(Category.JavaScript, logCategorySearch);
+getBooksByCategory(Category.Software, logCategorySearch);
+console.log('end');
