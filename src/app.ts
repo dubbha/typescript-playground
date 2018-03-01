@@ -5,7 +5,7 @@ function showHello(divName: string, name: string) {
 }
 
 
-// ### Modules and Namespaces
+// ### Generics
 // # Task 17. Generic Functions
 import { Category } from './enums';
 import { Book } from './interfaces';
